@@ -22,8 +22,8 @@ services:
     restart: always
     image: dpage/pgadmin4:4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=user@domain.com
-      - PGADMIN_DEFAULT_PASSWORD=SuperSecret
+      - PGADMIN_DEFAULT_EMAIL=odoo
+      - PGADMIN_DEFAULT_PASSWORD=odoo
     ports:
       - "8085:80"
 
