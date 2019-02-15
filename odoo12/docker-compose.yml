@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     ports:
-      - "8081:8069"
+      - "8030:8069"
     volumes:
       - web-data:/var/lib/odoo
       - ./config:/etc/odoo
@@ -27,7 +27,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=odoo
       - PGADMIN_DEFAULT_PASSWORD=odoo
     ports:
-      - "8085:80"
+      - "8031:80"
     volumes:
       - pga-lib:/var/lib/pgadmin
       - pga-data:/pgadmin4

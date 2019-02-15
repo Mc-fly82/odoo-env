@@ -5,13 +5,12 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: mclfy82/odoo:11.0
+    image: mclfy82/odoo:10.0
     restart: always
-    #    image: odoo:12.0
     depends_on:
       - db
     ports:
-      - "8081:8069"
+      - "8010:8069"
     volumes:
       - web-data:/var/lib/odoo
       - ./config:/etc/odoo
@@ -27,7 +26,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=odoo
       - PGADMIN_DEFAULT_PASSWORD=odoo
     ports:
-      - "8085:80"
+      - "8011:80"
     volumes:
       - pga-lib:/var/lib/pgadmin
       - pga-data:/pgadmin4

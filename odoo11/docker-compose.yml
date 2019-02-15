@@ -1,17 +1,38 @@
 version: '2'
 services:
+
   odoo:
-    image: mclfy82/odoo:12.0
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: mclfy82/odoo:11.0
+    restart: always
     depends_on:
       - db
     ports:
-      - "8081:8069"
+      - "8020:8069"
     volumes:
       - web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+      - ./custom-addons:/opt/odoo/odoo/custom-addons
+
+  pga:
+    depends_on:
+      - db
+    restart: always
+    image: dpage/pgadmin4:4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=odoo
+      - PGADMIN_DEFAULT_PASSWORD=odoo
+    ports:
+      - "8021:80"
+    volumes:
+      - pga-lib:/var/lib/pgadmin
+      - pga-data:/pgadmin4
   db:
     image: postgres:10
+    restart: always
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
@@ -22,4 +43,7 @@ services:
 volumes:
   web-data:
   db-data:
+  pga-data:
+  pga-lib:
+
 
